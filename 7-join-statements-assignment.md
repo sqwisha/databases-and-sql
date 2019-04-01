@@ -209,10 +209,9 @@ SELECT p.name, h.rank
 
 ````sql
 SELECT p.name, b.title
-  FROM patrons AS p
-  LEFT OUTER JOIN transactions AS t
-    ON p.id = t.patron_id
-  JOIN books AS b
-    ON t.isbn = b.isbn
-  ORDER BY p.name;
+FROM patrons AS p
+FULL JOIN transactions AS t
+ON p.id = t.patron_id
+LEFT JOIN books AS b
+ON t.isbn = b.isbn AND t.checked_in_date IS NULL;
 ````
